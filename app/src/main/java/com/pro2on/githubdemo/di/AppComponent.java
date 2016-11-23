@@ -1,6 +1,8 @@
 package com.pro2on.githubdemo.di;
 
 import com.pro2on.githubdemo.di.module.ApplicationModule;
+import com.pro2on.githubdemo.di.module.UserModule;
+import com.pro2on.githubdemo.mvp.presenter.SplashPresenter;
 
 import javax.inject.Singleton;
 
@@ -12,6 +14,10 @@ import dagger.Module;
  */
 
 @Singleton
-@Component(modules = {ApplicationModule.class})
+@Component(modules = {ApplicationModule.class, UserModule.class})
 public interface AppComponent {
+
+
+    void inject(SplashPresenter splashPresenter);
+
 }
