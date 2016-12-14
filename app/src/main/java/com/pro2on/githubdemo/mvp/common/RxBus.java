@@ -1,6 +1,9 @@
 package com.pro2on.githubdemo.mvp.common;
 
 
+import com.jakewharton.rxrelay2.PublishRelay;
+import com.jakewharton.rxrelay2.Relay;
+
 import io.reactivex.Observable;
 import io.reactivex.subjects.PublishSubject;
 import io.reactivex.subjects.Subject;
@@ -15,10 +18,10 @@ import io.reactivex.subjects.Subject;
 
 public class RxBus {
 
-    private final Subject<Object> _bus = PublishSubject.create();
+    private final Relay<Object> _bus = PublishRelay.create().toSerialized();
 
     public void send(Object o) {
-        _bus.onNext(o);
+        _bus.accept(o);
     }
 
     public Observable<Object> asObservable() {

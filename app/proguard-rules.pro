@@ -15,3 +15,13 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+
+### Moxy ###
+-keep class **$$PresentersBinder
+-keep class **$$State
+-keep class **$$ViewStateClassNameProvider
+-keepnames class * extends com.arellomobile.mvp.*
+### Moxy ###
+
+
