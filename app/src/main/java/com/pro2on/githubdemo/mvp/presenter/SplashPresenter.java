@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import com.arellomobile.mvp.MvpPresenter;
 import com.pro2on.githubdemo.application.DemoApp;
 import com.pro2on.githubdemo.mvp.common.TokenDataStore;
+import com.pro2on.githubdemo.mvp.model.UserManager;
 import com.pro2on.githubdemo.mvp.view.SplashView;
 
 
@@ -25,24 +26,25 @@ public class SplashPresenter extends MvpPresenter<SplashView> {
 
 
     @Inject
-    TokenDataStore tokenDataStore;
+    UserManager userManager;
 
 
     public SplashPresenter() {
         DemoApp.getAppComponent().inject(this);
     }
 
+
+
     public void checkIsUserAuthorized() {
-        getTokenObservable().subscribe(token -> {
-            for (SplashView splashView : getAttachedViews()) {
-                splashView.setAuthorized(!TextUtils.isEmpty(token));
-            }
-        });
+
+        for (SplashView splashView : getAttachedViews()) {
+            splashView.setAuthorized(userManager.isUserSessionIsStartedOrStartSessionIfPossible());
+        }
+
     }
 
 
-    private Observable<String> getTokenObservable() {
-        return Observable.create(subscriber -> subscriber.onNext(tokenDataStore.getToken()));
-    }
+
+
 
 }

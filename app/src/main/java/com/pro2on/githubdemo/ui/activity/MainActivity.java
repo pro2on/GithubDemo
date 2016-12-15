@@ -1,9 +1,11 @@
 package com.pro2on.githubdemo.ui.activity;
 
-import android.content.Intent;
-
 import com.arellomobile.mvp.MvpAppCompatActivity;
-import com.pro2on.githubdemo.mvp.view.LoginView;
+import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.pro2on.githubdemo.mvp.presenter.UserPresenter;
+import com.pro2on.githubdemo.mvp.view.UserView;
+
+import timber.log.Timber;
 
 /**
  * Date: 23.11.16
@@ -11,26 +13,25 @@ import com.pro2on.githubdemo.mvp.view.LoginView;
  * Created by pro2on in project GithubDemo
  */
 
-public class MainActivity extends MvpAppCompatActivity implements LoginView {
-
+public class MainActivity extends MvpAppCompatActivity implements UserView {
 
 
     private static final int LAYOUT = 1;
 
 
+    @InjectPresenter
+    UserPresenter userPresenter;
 
-
-
-
-
+    @Override
+    public void showUserName(String username) {
+        Timber.d("user name: %s", username);
+        getSupportActionBar().setTitle(username);
+    }
 
 
     @Override
-    public void leaveUserSpace() {
-        Intent intent = new Intent(this, SignInActivity.class);
-        startActivity(intent);
-        finish();
+    public void onUserFinish() {
+        Timber.d("need to logout");
     }
-
 
 }

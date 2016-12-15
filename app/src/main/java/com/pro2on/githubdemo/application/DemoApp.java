@@ -7,6 +7,7 @@ import com.pro2on.githubdemo.BuildConfig;
 import com.pro2on.githubdemo.application.timber.CrashReportingTree;
 import com.pro2on.githubdemo.di.AppComponent;
 import com.pro2on.githubdemo.di.DaggerAppComponent;
+import com.pro2on.githubdemo.di.module.ApiModule;
 import com.pro2on.githubdemo.di.module.ApplicationModule;
 import com.pro2on.githubdemo.di.module.UserModule;
 
@@ -63,7 +64,7 @@ public class DemoApp extends Application {
         sAppComponent =
                 DaggerAppComponent.builder()
                 .applicationModule(new ApplicationModule(this))
-                .userModule(new UserModule())
+                .apiModule(new ApiModule())
                 .build();
 
     }

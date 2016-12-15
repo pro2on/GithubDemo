@@ -42,7 +42,7 @@ public class SplashActivity extends MvpAppCompatActivity implements SplashView {
     @Override
     public void setAuthorized(boolean isAuthorized) {
         Timber.d("user is authorized: %s", isAuthorized);
-        startActivityForResult(new Intent(this, isAuthorized ? MainActivity.class : SignInActivity.class) , 0);
+        startActivityForResult(new Intent(this, isAuthorized ? MainActivity.class : LoginActivity.class) , 0);
     }
 
     @Override
